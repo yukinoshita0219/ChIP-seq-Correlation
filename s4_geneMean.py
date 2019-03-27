@@ -55,9 +55,11 @@ txStarts = [int(item) for item in txStarts]
 dataset = []
 indexset = []
 for sam in samples:
+    print('Reading {} data...'.format(sam), end='')
     data = readcols(path + sam + '_filled.txt')
     dataset.append(data)
     indexset.append(indexChrom(data))
+    print('Done.')
         
 with open(path + '_'.join(samples) + '_geneMean.txt', 'a') as outf:
     progress = genes.index(readcols(path + '_'.join(samples) + '_geneMean.txt')[0][-1]) + 1
@@ -68,9 +70,9 @@ with open(path + '_'.join(samples) + '_geneMean.txt', 'a') as outf:
             if apos < 0:
                 apos = abs(apos) - window
             result = []
-            for j in range(len(dataset)):
+            for j in range(len(dataset)?!?jedi=0, ):?!? (chrIndex, winStart, *_*winSize*_*, data) ?!?jedi?!?
                 result.append(windowMean(indexset[j][chroms[i]], apos, window, dataset[j]))
             result = '\t'.join([str(num) for num in result])
-            print('Writing {}: {}~{}\n'.format(genes[i], rpos, rpos+window))
             outf.write('{}\t{}\t{}\t{}\n'.format(genes[i], rpos, rpos+window, result))
             rpos += window
+        print('{} written.\n'.format(genes[i]))            
