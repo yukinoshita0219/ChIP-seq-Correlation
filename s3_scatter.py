@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # encoding=utf-8
 
+from config import *
 import matplotlib.pyplot as plt
 from scipy.stats import linregress
 from table import *
@@ -26,10 +27,10 @@ def draw(x, y=None):
 
     plt.show()
 
-def readvalue(*samples):
+def readvalue(samples, path=''):
     values = []
     for sam in samples:
-        filename = sam + '_mean.txt'
+        filename = path + sam + '_mean.txt'
         values.append(list(map(float, readcols(filename)[3])))
     return tuple(values)
 
@@ -49,5 +50,5 @@ def delzero(*inputs):
         i += 1
     return tuple(inputs)
 
-x, y = readvalue('PAB1', 'PAD1')
+x, y = readvalue(samples, dataPath)
 draw(x, y)

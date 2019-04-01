@@ -42,27 +42,27 @@ def windowMean(chrIndex, winStart, winSize, data):
             i += 1
     return myave
 
-def indexChrom(data):
-    chroms = readcols('NC10.chrom')[0]
+def indexChrom(data, path=''):
+    chroms = readcols(path + 'NC10.chrom')[0]
     chrIndex = {}
     for chrom in chroms:
         chrIndex[chrom] = data[0].index(chrom)
     return chrIndex
 
-genes, chroms, txStarts = genePos(path + 'refFlat.txt')
+genes, chroms, txStarts = genePos(dataPath + 'refFlat.txt')
 txStarts = [int(item) for item in txStarts]
 
 dataset = []
 indexset = []
 for sam in samples:
     print('Reading {} data...'.format(sam), end='')
-    data = readcols(path + sam + '_filled.txt')
+    data = readcols(dataPath + sam + '_filled.txt')
     dataset.append(data)
-    indexset.append(indexChrom(data))
+    indexset.append(indexChrom(data, dataPath))
     print('Done.')
         
-with open(path + '_'.join(samples) + '_geneMean.txt', 'a') as outf:
-    progress = genes.index(readcols(path + '_'.join(samples) + '_geneMean.txt')[0][-1]) + 1
+with open(dataPath + '_'.join(samples) + '_geneMean.txt', 'a') as outf:
+    progress = genes.index(readcols(dataPath + '_'.join(samples) + '_geneMean.txt')[0][-1]) + 1
     for i in range(progress, len(genes)):
         rpos = upstream
         while rpos < downstream:
@@ -70,9 +70,9 @@ with open(path + '_'.join(samples) + '_geneMean.txt', 'a') as outf:
             if apos < 0:
                 apos = abs(apos) - window
             result = []
-            for j in range(len(dataset)?!?jedi=0, ):?!? (chrIndex, winStart, *_*winSize*_*, data) ?!?jedi?!?
+            for j in range(len(dataset)):
                 result.append(windowMean(indexset[j][chroms[i]], apos, window, dataset[j]))
             result = '\t'.join([str(num) for num in result])
             outf.write('{}\t{}\t{}\t{}\n'.format(genes[i], rpos, rpos+window, result))
             rpos += window
-        print('{} written.\n'.format(genes[i]))            
+        print('{} written.\n'.format(genes[i]))

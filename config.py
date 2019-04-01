@@ -2,8 +2,9 @@
 # encoding=utf-8
 
 #Configuration
-path = ''
+dataPath = '/home/makise/thesis/data/'
 samples = ['PAB1', 'PAD1']
+outputPath = '/home/makise/thesis/figure/'
 
 #For genome
 size = 1000

@@ -7,7 +7,7 @@ from table import *
 def wigfill(sample, path=''):
     with open(path + sample + '.wig', 'r') as fin:
         with open(path + sample + '_filled.txt', 'w') as fout:
-            col = readcols('NC10.chrom')
+            col = readcols(path + 'NC10.chrom')
             chromsize = dict(zip(col[0], col[1]))
             lines = fin.readlines()
             line = lines[0].strip().split('\t')
@@ -31,4 +31,4 @@ def wigfill(sample, path=''):
                 fout.write('{}\t{}\t{}\t{}\n'.format(chrom, line[2], chromsize[chrom], 0.0))
 
 for sam in samples:
-    wigfill(sam, path)
+    wigfill(sam, dataPath)

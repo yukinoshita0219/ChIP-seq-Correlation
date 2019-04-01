@@ -12,18 +12,20 @@ def plot(axes, x, y, **kwargs):
     yr = np.array(y).reshape(int(len(y)/xl), xl)
     ym = yr.mean(0)
     axes.plot(x, ym, **kwargs)
-    parts = axes.violinplot(yr, x, showextrema=False, widths=100)
+    parts = axes.violinplot(yr, x, showextrema=False, widths=130)
     for pc in parts['bodies']:
         pc.set_facecolor(kwargs['color'])
+        pc.set_edgecolor(kwargs['color'])
+        #pc.set_alpha(0.4)
 
-def readData(samples):
+def readData(samples, path=''):
     col = readcols(path + samples + '_geneMean.txt')
     center = [int(i)+100 for i in col[1][:15]]
     value1 = [float(i) for i in col[3]]
     value2 = [float(i) for i in col[4]]
     return (center, value1, value2)
 
-x, y1, y2 = readData('_'.join(samples))
+x, y1, y2 = readData('_'.join(samples), dataPath)
 fig, ax = plt.subplots(1, 1, True)
 ax.set_title('Gene-nearby Coherence between RCM-1 & CBF-1')
 ax.set_xlabel('Relative Position to Transcription Start')
@@ -33,7 +35,7 @@ xticks.append(1000)
 ax.set_xticks(xticks)
 ax.set_ylabel('200bp Mean Signal')
 ax.set_ylim(0, 30)
-plot(ax, x, y1, color='red', label='RCM-1')
-plot(ax, x, y2, color='blue', label='CBF-1')
+plot(ax, x, y1, color='r', label='RCM-1')
+plot(ax, x, y2, color='b', label='CBF-1')
 ax.legend()
 plt.show()

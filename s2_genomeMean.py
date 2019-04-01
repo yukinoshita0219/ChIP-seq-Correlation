@@ -35,4 +35,4 @@ def wigmean(sample, size, path=''):
         output.write('{}\t{}\t{}\t{}\n'.format(chrom, start, col[2][-1], myave)) 
 
 for sam in samples:
-    wigmean(sam, size, path)
+    wigmean(sam, size, dataPath)
