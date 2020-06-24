@@ -15,3 +15,6 @@ Python scripts for correlation analysis of ChIP-seq samples
 2. Edit the sample names and the genome name if you needed.
 3. Go to the directory you put the files in Terminal.
 4. Run all files starts with s(number)_ in order according its file type.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
